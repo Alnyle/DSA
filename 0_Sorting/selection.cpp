@@ -5,20 +5,17 @@
 using namespace std;
 
 template <class T>
-void selection(T data[], int n)
-{
+void selection(T data[], int n) {
 
-    for (int i = 0, j, least; i < n - 1; i++)
-    {
-
-        for (j = i + 1, least = i; j < n; j++)
+    for (int i = 0, j, least; i < n - 1; i++) {
+        
+        for(j = i+1, least = i; j < n; j++) 
             if (data[j] < data[least])
-                least = j;
-
+               least = j;
+        
         swap(data[i], data[least]);
     }
 }
-
 
 
 
