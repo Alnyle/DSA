@@ -4,34 +4,37 @@ using namespace std;
 
 // left: first index of array
 // right: second indx of array
-void merge(int arr[], int left, int mid, int right) {
-
+void merge(int arr[], int left, int mid, int right)
+{
 
     int i, j, k;
     // remember left is less mid as index
     int n1 = mid - left + 1; // size of left array -> 4
-    int n2 = right - mid; // size of left array -> 3
+    int n2 = right - mid;    // size of left array -> 3
 
-    int *L = new int[n1], *R = new int[n2];
+    int *first = new int[n1], *second = new int[n2];
     // fill the two arrays (n1, n2)
     for (i = 0; i < n1; i++)
-        L[i] = arr[left + i];
+        first[i] = arr[left + i];
 
     for (j = 0; j < n2; j++)
-        R[j] = arr[mid + 1 + j];
+        second[j] = arr[mid + 1 + j];
 
     i = j = 0;
     k = left; // 0
 
-    // merge the two arrays based on sort 
-    while (i < n1 && j < n2) {
+    // merge the two arrays based on sort
+    while (i < n1 && j < n2)
+    {
 
-        if (L[i] <= R[j]) {
-            arr[k] = L[i];
+        if (first[i] <= second[j])
+        {
+            arr[k] = first[i];
             i++;
         }
-        else {
-            arr[k] = R[j];
+        else
+        {
+            arr[k] = second[j];
             j++;
         }
         k++;
@@ -39,37 +42,32 @@ void merge(int arr[], int left, int mid, int right) {
 
     while (i < n1)
     {
-        arr[k] = L[i];
+        arr[k] = first[i];
         i++;
         k++;
     }
 
-
     while (j < n2)
     {
-        arr[k] = R[j];
+        arr[k] = second[j];
         j++;
         k++;
     }
-    
 }
 
+void mergeSort(int arr[], int left, int right)
+{ // size of the array = 7 , left = 0 ,right =  6
 
-void mergeSort(int arr[], int left, int right) { // size of the array = 7 , left = 0 ,right =  6
-
-    if (left < right) {
+    if (left < right)
+    {
 
         int mid = left + (right - left) / 2; // 3
 
         mergeSort(arr, left, mid);
         mergeSort(arr, mid + 1, right);
-        merge(arr, left, mid,right);
-
+        merge(arr, left, mid, right);
     }
-
 }
-
-
 
 void print(int arr[], int n)
 {
@@ -88,7 +86,7 @@ int main()
     int n = sizeof(data) / sizeof(data[0]);
 
     mergeSort(data, 0, n - 1);
-    print(data, 5);
+    print(data, 7);
 
     return 0;
 }
