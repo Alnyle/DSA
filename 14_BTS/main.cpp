@@ -34,6 +34,7 @@ template <class T>
 class BTS {
     protected:
     BTSNode<T>* root;
+    public:
     BTS() {root = 0;}
     void clear() {root = 0;}
     bool isEmpty() {return root == 0;}
@@ -77,9 +78,9 @@ class BTS {
         if (node == 0)
             return;
             
-        return inOrder(node->getLeft());
+        inOrder(node->getLeft());
         cout << node->getKey() << " ";
-        return inOrder(node->getRight());
+        inOrder(node->getRight());
     }
 
     void postOrder(BTSNode<T> *node) {
@@ -87,8 +88,8 @@ class BTS {
         if(node == 0)
             return;
         
-        return postOrder(node->getRight());
-        return postOrder(node->getRight());
+        postOrder(node->getRight());
+        postOrder(node->getRight());
         cout << node->getKey() << " ";
     }
 
@@ -98,8 +99,8 @@ class BTS {
             return;
 
         cout << node->getKey() << " ";
-        return preOrder(node->getLeft());
-        return preOrder(node->getRight());
+        preOrder(node->getLeft());
+        preOrder(node->getRight());
     }
 
     void insert(T &value) {
@@ -107,7 +108,7 @@ class BTS {
         BTSNode<T> *p = root, *pre = 0;
         while(p != 0) {
             pre = p;
-            if (p->getKey() < value) 
+            if (p->getKey() > value) 
                 p = p->getLeft();
             else p = p->getRight();
         }
